@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="title">Musée du louvre</h1>
+        <h2 class="subtitle">Paris (1er arrondissement)</h2>
+        <div class="preview row">
+            <div class="col-md-6">.col-md-1</div>
+            <div class="col-md-6">.col-md-1</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .title {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 40px;
+            opacity: 0.8;
+        }
+        .subtitle {
+            font-size: 20px;
+            text-align: center;
+            margin-top: -25px;
+            opacity: 0.6;
+        }
+        .preview {
+            margin-top: 55px;
+            text-align: center;
+        }
+        body {
+            background-color: #f9ecec;
+        }
+    </style>
+{% endblock %}
