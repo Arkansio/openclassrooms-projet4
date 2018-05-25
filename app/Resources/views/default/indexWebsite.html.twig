@@ -5,23 +5,30 @@
         <div class="menu">
             <div class="element">Acceuil</div>
             <div class="element">Billeterie</div>
+            <div class="textRight">Musée du Louvre</div>
         </div>
     </div>
     <div class="container">
-        <h1 class="title">Musée du louvre</h1>
+        <h1 class="title">Musée du Louvre</h1>
         <h2 class="subtitle">Paris (1er arrondissement)</h2>
         <div class="preview row">
-            <div class="col-md-6">.col-md-1</div>
+            <div class="col-md-6">
+                <div class="welcome">
+                    Bienvenue sur le site en ligne du musée du Louvre.
+                </div>
+                <img src="{{ asset("img/louvre.jpg") }}" width=430 class="louvreImg">
+            </div>
             <div class="col-md-6">
                 <h2>Les horaires</h2>
                 <div class="horaire">Ouvert tous les jours excepté le mardi</div>
                 <div class="horaire">Ainsi que les 1er mai, 1er novembre et 25 décembre</div>
                 <h2>Les tarifs</h2>
+                <div class="tarif"><span>Tarif normal</span> - à partir de 12 ans - 16€</div>
+                <div class="tarif"><span>Tarif enfant</span> - de 4 à 12 ans - 8€</div>
+                <div class="tarif"><span>Tarif senior</span> - à partir de 60 ans - 12€</div>
+                <div class="tarif">Le billet pour les enfants de moins de 4 ans est gratuit</div>
+                <div class="buyTicket">Acheter un billet</div>
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block stylesheets %}
-
 {% endblock %}

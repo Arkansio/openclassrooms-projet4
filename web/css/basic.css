@@ -41,3 +41,34 @@ body {
 .horaire {
     font-size: 18px;
 }
+
+/* Page d'acceuil */
+.buyTicket {
+    margin-top: 20px;
+    padding: 10px;
+    border: black 2px solid;
+    width: 200px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+}
+.tarif {
+    font-size: 18px;
+}
+.tarif span {
+    font-weight: bold;
+}
+.textRight {
+    float: right;
+    margin-top: 20px;
+    font-size: 30px;
+    margin-right: 50px;
+}
+.welcome {
+    font-size: 25px;
+}
+.louvreImg {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
