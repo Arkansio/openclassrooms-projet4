@@ -46,6 +46,11 @@ body {
     color: black;
 }
 
+.blackLink {
+    color: black;
+    text-decoration: none;
+}
+
 /* Page d'acceuil */
 .buyTicket {
     margin-top: 20px;
