@@ -42,6 +42,10 @@ body {
     font-size: 18px;
 }
 
+.nav .menu a {
+    color: black;
+}
+
 /* Page d'acceuil */
 .buyTicket {
     margin-top: 20px;
