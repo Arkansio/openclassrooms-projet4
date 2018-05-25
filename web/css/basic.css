@@ -1,0 +1,43 @@
+.title {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 40px;
+    opacity: 0.8;
+}
+.subtitle {
+    font-size: 20px;
+    text-align: center;
+    margin-top: -25px;
+    opacity: 0.6;
+}
+.preview {
+    margin-top: 55px;
+    text-align: center;
+}
+body {
+    background-color: #FDF5E6;
+    font-family: 'IM Fell French Canon SC', serif;
+}
+.nav {
+    height: 70px;
+    background-color: white;
+    width: 100%;
+}
+.nav .menu .element{
+    display: inline-block;
+    padding: 7px;
+    vertical-align: middle;
+    font-size: 23px;
+    border-style: solid;
+    border-width: 2px;
+    margin-top: 13px;
+    margin-left: 35px;
+    cursor: pointer;
+}
+.nav .menu {
+    height: 100%;
+    margin-left: 2%;
+}
+.horaire {
+    font-size: 18px;
+}
