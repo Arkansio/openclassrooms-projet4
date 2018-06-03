@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ticket
  *
  * @ORM\Table(name="ticket")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketsRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketRepository")
  */
 class Ticket
 {
@@ -36,63 +36,47 @@ class Ticket
     private $visitDay;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="type", type="boolean")
-     */
-    private $fullDay;
-
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=100)
+     * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=100)
+     * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="reducePrice", type="boolean")
      */
     private $reducePrice;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="commandId", type="string", length=100)
+     * @ORM\Column(name="fullDay", type="boolean")
      */
-    private $commandId;
+    private $fullDay;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=100)
+     * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
 
     /**
-     * @return boolean
+     * @var string
+     *
+     * @ORM\Column(name="reservationCode", type="string", length=255)
      */
-    public function getReducePrice()
-    {
-        return $this->reducePrice;
-    }
+    private $reservationCode;
 
-    /**
-     * @param boolean $reducePrice
-     */
-    public function setReducePrice($reducePrice)
-    {
-        $this->reducePrice = $reducePrice;
-    }
 
     /**
      * Get id
@@ -126,22 +110,6 @@ class Ticket
     public function getBirth()
     {
         return $this->birth;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param int $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
     }
 
     /**
@@ -217,49 +185,81 @@ class Ticket
     }
 
     /**
-     * Set mail
+     * Set reducePrice
      *
-     * @param string $mail
+     * @param boolean $reducePrice
      *
      * @return Ticket
      */
-    public function setMail($mail)
+    public function setReducePrice($reducePrice)
     {
-        $this->mail = $mail;
+        $this->reducePrice = $reducePrice;
 
         return $this;
     }
 
     /**
-     * Get mail
+     * Get reducePrice
+     *
+     * @return bool
+     */
+    public function getReducePrice()
+    {
+        return $this->reducePrice;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return Ticket
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
      *
      * @return string
      */
-    public function getMail()
+    public function getCountry()
     {
-        return $this->mail;
+        return $this->country;
     }
 
     /**
+     * Set commandId
+     *
+     * @param string $commandId
+     *
+     * @return Ticket
+     */
+    public function setReservationCode($reservationCode)
+    {
+        $this->reservationCode = $reservationCode;
+
+        return $this;
+    }
+
+    /**
+     * Get commandId
+     *
      * @return string
      */
-    public function getCommandId()
+    public function getReservationCode()
     {
-        return $this->commandId;
-    }
-
-    /**
-     * @param string $commandId
-     */
-    public function setCommandId($commandId)
-    {
-        $this->commandId = $commandId;
+        return $this->reservationCode;
     }
 
     /**
      * @return boolean
      */
-    public function getFullDay()
+    public function isFullDay()
     {
         return $this->fullDay;
     }
@@ -270,22 +270,6 @@ class Ticket
     public function setFullDay($fullDay)
     {
         $this->fullDay = $fullDay;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param string $country
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
     }
 }
 
