@@ -29,13 +29,6 @@ class Ticket
     private $birth;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="visitDay", type="date")
-     */
-    private $visitDay;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
@@ -71,14 +64,7 @@ class Ticket
     private $country;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="reservationCode", type="string", length=255)
-     */
-    private $reservationCode;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Command", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Command", inversedBy="tickets", cascade="persist")
      * @ORM\JoinColumn(nullable=false)
      */
     private $command;

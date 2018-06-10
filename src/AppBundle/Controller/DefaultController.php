@@ -41,22 +41,23 @@ class DefaultController extends Controller
             $entityManager = $this->getDoctrine()->getManager();
 
             $booking = $form->getData();
+
             dump($booking);
 
             $reservationCode = sha1(random_bytes(50));
             $booking->setReservationCode($reservationCode);
+
+
             $ticketsList = $booking->getTickets();
 
+
+
             foreach($ticketsList as $ticket) {
-                $ticket->setVisitDay($booking->getReservationDate());
-                $ticket->setReservationCode($booking->getReservationCode());
                 $ticket->setCommand($booking);
             }
 
             $entityManager->persist($booking);
             $entityManager->flush();
-
-
         }
         return $this->render('default/billetterie.html.twig', array(
             'form' => $form->createView()
