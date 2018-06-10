@@ -16,6 +16,7 @@ class Command
     public function __construct ()
     {
         $this->tickets = new ArrayCollection();
+        $this->commandDate = new \DateTime();
     }
     /**
      * @var int
@@ -52,6 +53,29 @@ class Command
      * @ORM\Column(name="reservationDate", type="date")
      */
     private $reservationDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="commandDate", type="datetime")
+     */
+    private $commandDate;
+
+    /**
+     * @return \DateTime
+     */
+    public function getCommandDate()
+    {
+        return $this->commandDate;
+    }
+
+    /**
+     * @param \DateTime $commandDate
+     */
+    public function setCommandDate($commandDate)
+    {
+        $this->commandDate = $commandDate;
+    }
 
 
     /**
