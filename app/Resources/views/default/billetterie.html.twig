@@ -5,6 +5,8 @@
         <h1 class="title">Billeterie</h1>
         <div class="row">
             {{ form_start(form, {'attr': {'class': 'command'} }) }}
+            {{ form_row(form.mail, { 'label': 'Email' }) }}
+            {{ form_widget(form.reservationDate, { 'label': 'Date de réservation' }) }}
             <ul class="tags" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e('html_attr') }}">
             </ul>
             {{ form_rest(form) }}
@@ -16,7 +18,7 @@
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
+        var $addTagLink = $('<a href="#" class="add_tag_link">Ajouter un billet</a>');
         var $newLinkLi = $('<li></li>').append($addTagLink);
 
         $(document).ready(function() {
