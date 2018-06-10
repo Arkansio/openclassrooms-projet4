@@ -26,8 +26,8 @@ class CommandType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false
             ))
-            ->add('save', SubmitType::class, array(
-                'attr' => array('class' => 'save'),
+            ->add('Commander', SubmitType::class, array(
+                'attr' => array('class' => 'Commander'),
             ));
     }/**
      * {@inheritdoc}
