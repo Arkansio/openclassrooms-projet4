@@ -77,6 +77,11 @@ class Ticket
      */
     private $reservationCode;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Command", inversedBy="tickets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $command;
 
     /**
      * Get id
@@ -270,6 +275,14 @@ class Ticket
     public function setFullDay($fullDay)
     {
         $this->fullDay = $fullDay;
+    }
+
+    /**
+     * @param mixed $command
+     */
+    public function setCommand($command)
+    {
+        $this->command = $command;
     }
 }
 

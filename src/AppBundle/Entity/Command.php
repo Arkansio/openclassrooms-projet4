@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Command
 {
+    public function __construct ()
+    {
+        $this->tickets = new ArrayCollection();
+    }
     /**
      * @var int
      *
@@ -34,6 +39,12 @@ class Command
      * @ORM\Column(name="reservationCode", type="string", length=255, unique=true)
      */
     private $reservationCode;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="command", cascade="persist")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tickets;
 
     /**
      * @var \DateTime
@@ -123,6 +134,27 @@ class Command
     public function getReservationDate()
     {
         return $this->reservationDate;
+    }
+
+    public function addTickets(Ticket $ticket)
+    {
+        $this->tickets->add($ticket);
+        $ticket->setCommand($this);
+    }
+
+    public function removeTickets(Ticket $ticket)
+    {
+        $this->tickets->remove($ticket);
+    }
+
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
     }
 }
 
