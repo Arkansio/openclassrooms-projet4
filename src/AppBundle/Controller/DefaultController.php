@@ -33,8 +33,9 @@ class DefaultController extends Controller
     /**
      * @Route("/billetterie/buy", name="billetterie")
      */
-    public function billetterie(Request $request)
+    public function billetterie(Request $request, CalculPrice $calculPrice)
     {
+        $session = $request->getSession();
         $form = $this->CreateForm(CommandType::class);
         $form->handleRequest($request);
         $form->isSubmitted();
@@ -51,12 +52,15 @@ class DefaultController extends Controller
                 $ticket->setCommand($booking);
             }
 
-            $calculPrice = $this->get(CalculPrice::class);
             $ticketsPriceList = $calculPrice->calculPriceTickets($ticketList);
 
-            print_r($ticketsPriceList);
+            $session->set('ticketsShop', $ticketsPriceList);
+            print_r($session->get('ticketsShop'));
+
+            /*
             $entityManager->persist($booking);
             $entityManager->flush();
+            */
         }
         return $this->render('default/billetterie.html.twig', array(
             'form' => $form->createView()
