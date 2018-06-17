@@ -29,6 +29,11 @@ class CalculPrice
             if($ticket->getReducePrice() and $age >= 12) {
                 $price = 10;
             }
+
+            if(!$ticket->isFullDay()) {
+                $price /= 2;
+            }
+
             array_push($ticketPrice, $price);
             array_push($ticketsPriceList, $ticketPrice);
         }
