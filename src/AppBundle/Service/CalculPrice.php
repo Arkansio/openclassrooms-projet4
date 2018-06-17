@@ -14,7 +14,7 @@ class CalculPrice
     public function calculPriceTickets($ticketList) {
         $ticketsPriceList = [];
         foreach($ticketList as $ticket) {
-            $ticketPrice = [];
+            $ticketPrice = [$ticket];
             $birthday = $ticket->getBirth();
             $age = $this->calculAge($birthday);
             $price = 0;
