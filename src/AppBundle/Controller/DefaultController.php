@@ -16,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Service\CalculPrice;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
@@ -39,23 +41,20 @@ class DefaultController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
             $entityManager = $this->getDoctrine()->getManager();
-
             $booking = $form->getData();
-
             dump($booking);
 
             $reservationCode = sha1(random_bytes(50));
             $booking->setReservationCode($reservationCode);
-
-
-            $ticketsList = $booking->getTickets();
-
-
-
-            foreach($ticketsList as $ticket) {
+            $ticketList = $booking->getTickets();
+            foreach($ticketList as $ticket) {
                 $ticket->setCommand($booking);
             }
 
+            $calculPrice = $this->get(CalculPrice::class);
+            $ticketsPriceList = $calculPrice->calculPriceTickets($ticketList);
+
+            print_r($ticketsPriceList);
             $entityManager->persist($booking);
             $entityManager->flush();
         }
