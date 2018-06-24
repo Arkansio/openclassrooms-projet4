@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Command;
 use AppBundle\Entity\Ticket;
 use AppBundle\Form\CommandType;
+use AppBundle\Service\Shop;
 use Doctrine\DBAL\Types\BooleanType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -45,12 +46,7 @@ class DefaultController extends Controller
             $booking = $form->getData();
             dump($booking);
 
-            $reservationCode = sha1(random_bytes(50));
-            $booking->setReservationCode($reservationCode);
             $ticketList = $booking->getTickets();
-            foreach($ticketList as $ticket) {
-                $ticket->setCommand($booking);
-            }
 
             $ticketsPriceList = $calculPrice->calculPriceTickets($ticketList);
 
@@ -61,9 +57,50 @@ class DefaultController extends Controller
             $entityManager->persist($booking);
             $entityManager->flush();
             */
+
+            return $this->redirectToRoute("payement");
         }
-        return $this->render('default/billetterie.html.twig', array(
-            'form' => $form->createView()
+        else {
+            return $this->render('default/billetterie.html.twig', array(
+                'form' => $form->createView()
+            ));
+        }
+    }
+
+    /**
+     * @Route("/billetterie/payement", name="payement")
+     */
+    public function payement(Request $request, CalculPrice $calculPrice)
+    {
+        $session = $request->getSession();
+        $tickets = $session->get('ticketsShop');
+        $total = $calculPrice->calculTotalPrice($tickets);
+        // replace this example code with whatever you need
+        return $this->render('default/payement.html.twig', array(
+            'tickets' => $tickets,
+            'total' => $total
         ));
+    }
+
+    /**
+     * @Route("/billetterie/thanks", name="thanks")
+     */
+    public function thanks(Request $request)
+    {
+        return $this->render('default/thanks.html.twig');
+    }
+
+    /**
+     * @Route("/billetterie/checkout", name="checkout", methods="POST")
+     */
+    public function checkout(Request $request, Shop $shop, CalculPrice $calculPrice)
+    {
+        $session = $request->getSession();
+        if($shop->checkout($session, $calculPrice)) {
+
+        } else {
+
+        }
+        return $this->redirectToRoute("thanks");
     }
 }

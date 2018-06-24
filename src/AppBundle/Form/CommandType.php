@@ -18,7 +18,7 @@ class CommandType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('mail')
+            ->add('mail', EmailType::class)
             ->add('reservationDate')
             ->add('tickets', CollectionType::class, array(
                 // each entry in the array will be an "email" field

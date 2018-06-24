@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="title">Page de paiement</h1>
+        <h2 class="subtitle">Valider votre panier</h2>
+        <table>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Pays</th>
+                <th>Prix</th>
+            </tr>
+            {% for item in tickets %}
+                <tr>
+                    <td> {{ item[0].firstName }}</td>
+                    <td> {{ item[0].lastName }}</td>
+                    <td> {{ item[0].country }}</td>
+                    <td> {{ item[1] }}€</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <form method="POST" action="{{ path("checkout") }}">
+            <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_KjgzAecyVfarfrmGmw72vFCA"
+                    data-amount="{{ total }}"
+                    data-name="Billetterie"
+                    data-description="Musée du louvre"
+                    data-locale="auto"
+                    data-currency="eur">
+            </script>
+        </form>
+    </div>
+{% endblock %}

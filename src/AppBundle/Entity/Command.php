@@ -17,6 +17,7 @@ class Command
     {
         $this->tickets = new ArrayCollection();
         $this->commandDate = new \DateTime();
+        $this->reservationCode = sha1(random_bytes(50));
     }
     /**
      * @var int
@@ -160,13 +161,13 @@ class Command
         return $this->reservationDate;
     }
 
-    public function addTickets(Ticket $ticket)
+    public function addTicket(Ticket $ticket)
     {
         $this->tickets->add($ticket);
         $ticket->setCommand($this);
     }
 
-    public function removeTickets(Ticket $ticket)
+    public function removeTicket(Ticket $ticket)
     {
         $this->tickets->remove($ticket);
     }
@@ -174,11 +175,6 @@ class Command
     public function getTickets()
     {
         return $this->tickets;
-    }
-
-    public function setTickets($tickets)
-    {
-        $this->tickets = $tickets;
     }
 }
 
