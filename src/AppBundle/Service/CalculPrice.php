@@ -39,6 +39,17 @@ class CalculPrice
         }
         return $ticketsPriceList;
     }
+    public function calculTotalPrice($tickets) {
+        $total = 0;
+
+        foreach ($tickets as $ticket) {
+            $total += $ticket[1];
+        }
+
+        $total *= 100;
+
+        return $total;
+    }
     private function calculAge($birthDate)
     {
         $age = date_diff($birthDate, new \DateTime('now'));
